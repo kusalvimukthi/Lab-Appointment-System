@@ -1,8 +1,3 @@
-<%
-if(session.getAttribute("name") ==null){
-	response.sendRedirect("login.jsp");
-}
-%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -103,7 +98,7 @@ if(session.getAttribute("name") ==null){
             </div>
         </div>
         <div class="row">
-            <div class="bg-gray col-lg-9 col-md-9 col-sm-12 mx-auto p-lg-5 rounded">
+            <div class="border col-lg-9 col-md-9 col-sm-12 mx-auto p-lg-5 rounded">
 				<form id="#" class="appoinment-form" method="post" action="#">
 					<div class="row">
 						<div class="col-lg-6">
