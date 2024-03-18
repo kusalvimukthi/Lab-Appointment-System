@@ -1,5 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ page import="java.util.Map"%>
+    <%@ page import="core.SessionManage"%>
+    <%@ page import="controller.MedicalController"%>
+    <%@ page import="modal.MedicalTest"%>
+    <%@ page import="java.util.List"%>
+
+    	<%
+		String userEmail = (String) session.getAttribute("user-email");
+		String userFirstName = (String) session.getAttribute("user-first-name");
+		String userRole = (String) session.getAttribute("user-role");
+		%>
+		<%
+		if(session.getAttribute("user-email") == null){
+			response.sendRedirect("login.jsp");
+		}
+
+	
+	Map<String, String> fieldErrors = (Map<String, String>) session.getAttribute("fieldErrors");
+	String bookingDateError = SessionManage.getFiledValue(fieldErrors, "booking_date");
+	String bookingTimeError = SessionManage.getFiledValue(fieldErrors, "booking_time");
+	String medicalTestError = SessionManage.getFiledValue(fieldErrors, "medical_test");
+	String recommendedDoctorError = SessionManage.getFiledValue(fieldErrors, "recommended_doctor");
+	session.removeAttribute("fieldErrors");
+	
+	String status = (String) session.getAttribute("user-create-status");
+	session.removeAttribute("user-create-status");
+	if (status != null) {
+		session.removeAttribute("createUserFileds");
+	}
+	
+	String booking_date, booking_time, recommended_doctor;
+	booking_date = booking_time = recommended_doctor = "";
+	Map<String, String> inputs = (Map<String, String>) session.getAttribute("createUserFileds");
+	booking_date = SessionManage.getFiledValue(inputs, "booking_date");
+	booking_time = SessionManage.getFiledValue(inputs, "booking_time");
+	recommended_doctor = SessionManage.getFiledValue(inputs, "recommended_doctor");
+	session.removeAttribute("createUserFileds");
+	
+	List<MedicalTest> medicalTestList = MedicalController.getAllActiveMedicalTest();
+	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,18 +69,21 @@
 				</div>
 				<div class="col-lg-6">
                     <div class="text-right top-right-bar mt-2 mt-lg-0">
-                        <%-- Check if user is logged in --%>
-                        <% if (session.getAttribute("name") != null) { %>
-                            <a class=""  id="dropdown03" data-toggle="dropdown">
-                                <%= session.getAttribute("name") %> <i class="icofont-thin-down"></i>
-                            </a>
-                            <ul class="dropdown-menu mt-3" aria-labelledby="dropdown03">
-                                <li><a class="dropdown-item" href="dashbord.jsp">Manage Appointment</a></li>
-                                <li><a class="dropdown-item" href="logout">Log Out</a></li>
-                            </ul>
-                        <% } else { %>
-							<a href="registration.jsp" class="btn btn-outline-light btn-solid-white">Register</a>
-                            <a href="login.jsp" class="btn btn-outline-light btn-solid-white">Log In</a>
+						<%
+						if (userFirstName == null || userEmail == null) {
+						%>
+						<a href="registration.jsp" class="btn btn-outline-light btn-solid-white">Register</a>
+						<a href="login.jsp" class="btn btn-outline-light btn-solid-white">Log In</a>
+						<%
+						} else {
+						%>
+						<a class=""  id="dropdown03" data-toggle="dropdown">
+                             Hi, <%= userFirstName %> <i class="icofont-thin-down"></i>
+                        </a>
+                        <ul class="dropdown-menu mt-3" aria-labelledby="dropdown03">
+                            <li><a class="dropdown-item" href="dashbord.jsp">Manage Appointment</a></li>
+                            <li><a class="dropdown-item" href="logout">Log Out</a></li>
+                        </ul>
                         <% } %>
                     </div>
                 </div>
@@ -99,48 +142,57 @@
         </div>
         <div class="row">
             <div class="border col-lg-9 col-md-9 col-sm-12 mx-auto p-lg-5 rounded">
-				<form id="#" class="appoinment-form" method="post" action="#">
+				<form id="#" class="appoinment-form" method="post" action="AppoimentServlet">
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="form-group">
-								<label for="exampleFormControlSelect1">Select Test</label>
-								<select class="form-control" id="exampleFormControlSelect1">
-								  <option>1</option>
-								  <option>2</option>
-								  <option>3</option>
-								  <option>4</option>
-								  <option>5</option>
+								<label for="medical_test">Select Test</label>
+								<select class="form-control" id="medical_test" name="medical_test">
+									<%
+									for (MedicalTest medicalTest : medicalTestList) {
+									%>
+									<option value="<%=medicalTest.getId()%>"><%=medicalTest.getName()%></option>
+									<%
+									}
+									%>
 								</select>
+								<%=(medicalTestError != null) ? "<span class=\"text-danger\">" + medicalTestError + "</span>" : ""%>
 							  </div>
 						</div>
 						<div class="col-lg-6">
 							<div class="form-group">
-								<label for="exampleFormControlSelect1">mention dr</label>
-								<select class="form-control" id="exampleFormControlSelect1">
-								  <option>1</option>
-								  <option>2</option>
-								  <option>3</option>
-								  <option>4</option>
-								  <option>5</option>
+								<label for="booking_time">booking time</label>
+								<select class="form-control" id="booking_time" name="booking_time">
+									<option value="">Select Booking Time</option>
+									<option value="09:00">09:00</option>
+									<option value="09:30">09:30</option>
+									<option value="10:00">10:00</option>
+									<option value="10:30">10:30</option>
+									<option value="11:00">11:00</option>
+									<option value="11:30">11:30</option>
+									<option value="12:00">12:00</option>
 								</select>
+								<%=(bookingTimeError != null) ? "<span class=\"text-danger\">" + bookingTimeError + "</span>" : ""%>
 							  </div>
 						</div>
 						<div class="col-lg-6">
 							<div class="form-group">
-								<label for="exampleFormControlInput1">Email address</label>
-								<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+								<label for="booking_date">Booking Date</label>
+								<input type="date" class="form-control" id="booking_date" name="booking_date" placeholder="booking date" value="<%=booking_date%>">
+								<%=(bookingDateError != null) ? "<span class=\"text-danger\">" + bookingDateError + "</span>" : ""%>
 							</div>
 						</div>
 				
 						<div class="col-lg-6">
 							<div class="form-group">
-								<label for="exampleFormControlInput1">Email address</label>
-								<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+								<label for="recommended_doctor">Recommended Doctor</label>
+								<input type="text" class="form-control" id="recommended_doctor" name="recommended_doctor" placeholder="name@example.com" value="<%=recommended_doctor%>">
+								<%=(recommendedDoctorError != null) ? "<span class=\"text-danger\">" + recommendedDoctorError + "</span>" : ""%>
 							</div>
 						</div>
 					</div>
 					<div class="text-center">
-                        <a class="btn btn-main btn-round-full" href="appoiment.jsp">Make Appoinment <i class="icofont-simple-right ml-2  "></i></a>
+						<button class="btn btn-main btn-round-full" type="submit"><i class="icofont-simple-right ml-2  "></i>Make Appoinment</button>
                     </div>
 				</form>
             </div>
@@ -242,7 +294,6 @@
     <script src="./front-end/plugins/google-map/map.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>    
     <script src="./front-end/js/script.js"></script>
-    <script src="j./front-end/s/contact.js"></script>
 
   </body>
 </html>

@@ -1,32 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ page import="java.util.Map"%>
+    <%@ page import="core.SessionManage"%>
+    <%@ page import="controller.UserController"%>
+    <%@ page import="modal.User"%>
+    <%@ page import="java.util.List"%>
+    
     <%
     if (session.getAttribute("user-email") != null) {
       response.sendRedirect("dashbord.jsp");
     }
     
-    Map<String, String> fieldErrors = (Map<String, String>) request.getAttribute("fieldErrors");
-    String firstNameError = (fieldErrors != null && fieldErrors.containsKey("f_name")) ? fieldErrors.get("f_name")
-        : null;
-    String lastNameError = (fieldErrors != null && fieldErrors.containsKey("l_name")) ? fieldErrors.get("l_name")
-        : null;
-    String emailError = (fieldErrors != null && fieldErrors.containsKey("email")) ? fieldErrors.get("email")
-        : null;
-    String passwordError = (fieldErrors != null && fieldErrors.containsKey("password")) ? fieldErrors.get("password")
-        : null;
-    String confirmPasswordError = (fieldErrors != null && fieldErrors.containsKey("re_pass"))
-        ? fieldErrors.get("re_pass")
-        : null;
-    String telephoneNumberError = (fieldErrors != null && fieldErrors.containsKey("tel_number"))
-        ? fieldErrors.get("tel_number")
-        : null;
-    String nicError = (fieldErrors != null && fieldErrors.containsKey("nic"))
-        ? fieldErrors.get("nic")
-        : null;
-    String dobError = (fieldErrors != null && fieldErrors.containsKey("dob"))
-    ? fieldErrors.get("dob")
-    : null;
+    Map<String, String> fieldErrors = (Map<String, String>) session.getAttribute("fieldErrors");
+    String firstNameError = SessionManage.getFiledValue(fieldErrors, "f_name");
+    String lastNameError = SessionManage.getFiledValue(fieldErrors, "l_name");
+    String emailError = SessionManage.getFiledValue(fieldErrors, "email");
+    String passwordError = SessionManage.getFiledValue(fieldErrors, "password");
+    String confirmPasswordError = SessionManage.getFiledValue(fieldErrors, "confPassword");
+    String telephoneNumberError = SessionManage.getFiledValue(fieldErrors, "telephone");
+    String nicError = SessionManage.getFiledValue(fieldErrors, "nic");
+    String dobError = SessionManage.getFiledValue(fieldErrors, "db");
+    session.removeAttribute("fieldErrors");
     %>
 <!DOCTYPE html>
 <html>
@@ -144,9 +138,9 @@
                   </div>
                   <div class="col-lg-6">
                     <div class="mb-3">
-                      <label for="tel_number" class="form-label">Telephone Number</label>
+                      <label for="telephone" class="form-label">Telephone Number</label>
                       <div class="form-group">
-                        <input type="text" class="form-control" id="tel_number" name="tel_number" placeholder="Telephone Number" autofocus />
+                        <input type="text" class="form-control" id="telephone" name="telephone" placeholder="Telephone Number" autofocus />
                         <%
                         if (telephoneNumberError != null) {
                         %>
@@ -212,10 +206,10 @@
                   </div>
                   <div class="col-lg-6">
                     <div class="mb-3 form-password-toggle">
-                      <label class="form-label" for="re_pass">Confirm Password</label>
+                      <label class="form-label" for="confPassword">Confirm Password</label>
                       <div class="form-group">
                         <div class="input-group input-group-merge">
-                          <input type="password" id="re_pass" class="form-control" name="re_pass" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
+                          <input type="password" id="confPassword" class="form-control" name="confPassword" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
                           <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                         </div>
                         <%

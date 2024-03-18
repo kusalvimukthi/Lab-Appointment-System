@@ -2,8 +2,8 @@
     pageEncoding="ISO-8859-1"%>
 
     <%@ page import="java.util.Map"%>
-    <%@ page import="controller.UserController"%>
-    <%@ page import="modal.User"%>
+    <%@ page import="controller.AppoimentController"%>
+    <%@ page import="modal.Appointment"%>
     <%@ page import="java.util.List"%>
     
     <%
@@ -12,12 +12,13 @@
     String userLastName = (String) session.getAttribute("user-last-name");
     String userRole = (String) session.getAttribute("user-role");
     if (userFirstName == null || userEmail == null) {
-      response.sendRedirect("../login.jsp");
-    }else{
-      if (!"supervisor".equals(userRole)) {
-          response.sendRedirect("../dashbord.jsp");
-      }
+        response.sendRedirect("../login.jsp");
+    } else {
+        if (!"supervisor".equals(userRole)) {
+            response.sendRedirect("../dashbord.jsp");
+        }
     }
+    List<Appointment> appointmentList = AppoimentController.getAllAppointments();
     %>
 <!DOCTYPE html>
 <html>
@@ -173,21 +174,42 @@
             <div class="container-xxl flex-grow-1 container-p-y">
               <div class="row">
  				<div class="card">
-          <h5 class="card-header">Technologist Table</h5>
+                <div class="d-flex justify-content-between">
+                  <h5 class="card-header">Technologist Table</h5>
+                  <a href="create.jsp" class="btn btn-primary m-3">
+                      <span class="tf-icons bx bx-pie-chart-alt"></span>&nbsp; Add medical
+                  </a>
+                </div>
+
                 <div class="table-responsive text-nowrap">
                   <table class="table">
                     <thead>
                       <tr class="text-nowrap">
-                        <th>Email</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Tel Number</th>
-                        <th>NIC</th>
-                        <th>DOB</th>
-                        <th>Role</th>
+                        <th>ID</th>
+                        <th>Status</th>
+                        <th>Amount</th>
+                        <th>dr</th>
+                        <th>date</th>
+                        <th>time</th>
                       </tr>
                     </thead>
                     <tbody>
+                        <%
+                        for (Appointment appointment : appointmentList) {
+                        %>
+                        <tr>
+                            <td><%=appointment.getId()%></td>
+                            <td><%=appointment.getAppointmentStatus()%></td>
+                            <td><%=String.valueOf(appointment.getAmount())%></td>
+                            <td><%=appointment.getRecommendedDoctor()%></td>
+                            <td><%=String.valueOf(appointment.getSelectDate())%></td>
+                            <td><%=String.valueOf(appointment.getSelectTime())%></td>
+                            <td><a
+                                href="create.jsp?medical-test=<%=String.valueOf(appointment.getId())%>">EDIT</a></td>
+                        </tr>
+                        <%
+                        }
+                        %>
                     </tbody>
                   </table>
                 </div>

@@ -128,4 +128,36 @@ public class MedicalController {
 		}
 		return medicalTestList;
 	}
+	
+	public static List<MedicalTest> getMedicalTest(String query) {
+		Connection con = null;
+		List<MedicalTest> medicalTestList = new ArrayList<>();
+		ResultSet rs = null;
+		try {
+			con = DbConnection.getConnection();
+			PreparedStatement pst = con.prepareStatement(query);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				MedicalTest medicalTest = new MedicalTest();
+				medicalTest.setId(rs.getInt("id"));
+				medicalTest.setName(rs.getString("name"));
+				medicalTest.setDescription(rs.getString("description"));
+				medicalTest.setNormalRecordData(rs.getString("normal_record_data"));
+				medicalTest.setAmount(rs.getDouble("amount"));
+				medicalTest.setProcessingTime(rs.getDouble("processing_time"));
+				medicalTestList.add(medicalTest);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DbConnection.closeConnection(con);
+		}
+		return medicalTestList;
+	}
+	
+	
+	public static List<MedicalTest> getAllActiveMedicalTest() {
+	    String query = "SELECT * FROM medical_records WHERE is_active = true";
+	    return getMedicalTest(query);
+	}
 }

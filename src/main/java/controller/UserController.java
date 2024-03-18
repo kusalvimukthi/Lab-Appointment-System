@@ -81,7 +81,7 @@ public class UserController {
 		User user = null;
 		try {
 			con = DbConnection.getConnection();
-			String query = "SELECT u.email, u.f_name, u.l_name, r.name AS role_name FROM users u JOIN roles r ON u.role_id = r.id WHERE u.email=? AND u.password=?";
+			String query = "SELECT u.id, u.email, u.f_name, u.l_name, r.name AS role_name FROM users u JOIN roles r ON u.role_id = r.id WHERE u.email=? AND u.password=?";
 			PreparedStatement pst = con.prepareStatement(query);
 			pst.setString(1, emailAddress);
 			pst.setString(2, password);
@@ -89,6 +89,7 @@ public class UserController {
 
 			if (rs.next()) {
 				user = new User();
+				user.setId(rs.getInt("id"));
 				user.setEmail(rs.getString("email"));
 				user.setf_name(rs.getString("f_name"));
 				user.setl_name(rs.getString("l_name"));
@@ -316,4 +317,34 @@ public class UserController {
 	    }
 	    return userList;
 	}
+	
+	public static User createUser(String firstName, String lastName, String email, String password,
+            String telephone, String nic, String dob) {
+        Connection con = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            con = DbConnection.getConnection();
+            String sql = "INSERT INTO users (f_name, l_name, email, password, telephone, nic, dob, role_id) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setString(1, firstName);
+            preparedStatement.setString(2, lastName);
+            preparedStatement.setString(3, email);
+            preparedStatement.setString(4, password);
+            preparedStatement.setString(5, telephone);
+            preparedStatement.setString(6, nic);
+            preparedStatement.setString(7, dob);
+            preparedStatement.setInt(8, getRoleId("patient")); // Assuming role_id for a regular user is "patient"
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                return findUserByEmail(email);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DbConnection.closeConnection(con);
+        }
+        return null;
+    }
 }

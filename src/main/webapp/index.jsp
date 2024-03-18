@@ -5,6 +5,7 @@ String userEmail = (String) session.getAttribute("user-email");
 String userFirstName = (String) session.getAttribute("user-first-name");
 String userRole = (String) session.getAttribute("user-role");
 %>
+
 <!DOCTYPE html>
 <html>
 <head>

@@ -79,6 +79,7 @@ public class LoginServlet extends HttpServlet {
 			try {
 				User user = UserController.authenticateUser(emailAddress, password);
 				if (user != null) {
+					session.setAttribute("user-id", user.getId());
 					session.setAttribute("user-email", user.getEmail());
 					session.setAttribute("user-first-name", user.getf_name());
 					session.setAttribute("user-last-name", user.getl_name());

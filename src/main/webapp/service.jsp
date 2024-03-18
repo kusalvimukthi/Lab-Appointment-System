@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+	<%
+String userEmail = (String) session.getAttribute("user-email");
+String userFirstName = (String) session.getAttribute("user-first-name");
+String userRole = (String) session.getAttribute("user-role");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,18 +36,21 @@
 				</div>
 				<div class="col-lg-6">
                     <div class="text-right top-right-bar mt-2 mt-lg-0">
-                        <%-- Check if user is logged in --%>
-                        <% if (session.getAttribute("name") != null) { %>
-                            <a class=""  id="dropdown03" data-toggle="dropdown">
-                                <%= session.getAttribute("name") %> <i class="icofont-thin-down"></i>
-                            </a>
-                            <ul class="dropdown-menu mt-3" aria-labelledby="dropdown03">
-                                <li><a class="dropdown-item" href="dashbord.jsp">Manage Appointment</a></li>
-                                <li><a class="dropdown-item" href="logout">Log Out</a></li>
-                            </ul>
-                        <% } else { %>
-							<a href="registration.jsp" class="btn btn-outline-light btn-solid-white">Register</a>
-                            <a href="login.jsp" class="btn btn-outline-light btn-solid-white">Log In</a>
+						<%
+						if (userFirstName == null || userEmail == null) {
+						%>
+						<a href="registration.jsp" class="btn btn-outline-light btn-solid-white">Register</a>
+						<a href="login.jsp" class="btn btn-outline-light btn-solid-white">Log In</a>
+						<%
+						} else {
+						%>
+						<a class=""  id="dropdown03" data-toggle="dropdown">
+                             Hi, <%= userFirstName %> <i class="icofont-thin-down"></i>
+                        </a>
+                        <ul class="dropdown-menu mt-3" aria-labelledby="dropdown03">
+                            <li><a class="dropdown-item" href="dashbord.jsp">Manage Appointment</a></li>
+                            <li><a class="dropdown-item" href="logout">Log Out</a></li>
+                        </ul>
                         <% } %>
                     </div>
                 </div>
