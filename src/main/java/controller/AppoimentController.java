@@ -89,7 +89,7 @@ public class AppoimentController {
 				if (rs.next()) {
 					int appointmentId = rs.getInt(1);
 					for (String medicalTestId : medical_test) {
-						String query1 = "SELECT * FROM medical_test_records WHERE id = ?";
+						String query1 = "SELECT * FROM medical_records WHERE id = ?";
 						preparedStatement = con.prepareStatement(query1);
 						preparedStatement.setInt(1, Integer.parseInt(medicalTestId));
 						ResultSet rsMedicalTest = preparedStatement.executeQuery();
