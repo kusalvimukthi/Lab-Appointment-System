@@ -205,7 +205,7 @@
                             <td><%=String.valueOf(appointment.getSelectDate())%></td>
                             <td><%=String.valueOf(appointment.getSelectTime())%></td>
                             <td><a
-                                href="create.jsp?medical-test=<%=String.valueOf(appointment.getId())%>">EDIT</a></td>
+                                href="create.jsp?appoiment-id=<%=String.valueOf(appointment.getId())%>">EDIT</a></td>
                         </tr>
                         <%
                         }

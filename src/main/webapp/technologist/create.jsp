@@ -69,7 +69,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>ABC Laboratories</title>
     <meta name="description" content="" />
 
     <link rel="icon" type="image/x-icon" href="../back-end//assets/img/favicon/favicon.ico" />
@@ -87,15 +87,13 @@
   </head>
 
   <body>
-    <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
-        <!-- Menu -->
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
-              <span class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
+            <a href="../index.jsp" class="app-brand-link">
+              <span class="app-brand-text demo menu-text fw-bolder ms-2">ABC LAB</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -151,11 +149,7 @@
             %>
           </ul>
         </aside>
-        <!-- / Menu -->
-
-        <!-- Layout container -->
         <div class="layout-page">
-          <!-- Navbar -->
 
           <nav
             class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
@@ -169,7 +163,6 @@
 
             <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
               <ul class="navbar-nav flex-row align-items-center ms-auto">
-                <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
@@ -203,20 +196,15 @@
                     </li>
                   </ul>
                 </li>
-                <!--/ User -->
               </ul>
             </div>
           </nav>
 
-          <!-- / Navbar -->
-
-          <!-- Content wrapper -->
           <div class="content-wrapper">
             <div class="container-xxl flex-grow-1 container-p-y">
                 <div class="row">
                     <div class="card mb-4">
                         <h5 class="card-header"><%=(updateUserEmail == null) ? "Create a New Technician" : "Update a Technician"%></h5>
-                        <!-- Account -->
                         <hr class="my-0" />
                         <div class="card-body">
                           <form id="formAccountSettings" method="post" action="TechniciansServlet">
@@ -226,31 +214,31 @@
                                  value="<%=(updateUserEmail != null) ? "update" : "create"%>">
                                 <label for="email" class="form-label">Email
                                     Address<%=(updateUserEmail == null) ? "" : " (Cannot be changed)"%></label>
-                                <input class="form-control" type="email" name="email" id="email" value="<%=email%>" />
+                                <input class="form-control" type="email" name="email" placeholder="email" id="email" value="<%=email%>" />
                                 <%=(emailError != null) ? "<span style=\"color: red;\">" + emailError + "</span>" : ""%>
                               </div>
 
                               <div class="mb-3 col-md-6">
                                 <label for="f_name" class="form-label">first name</label>
-                                <input type="text" class="form-control" id="f_name" name="f_name" placeholder="f name" value="<%=firstName%>" />
+                                <input type="text" class="form-control" id="f_name" name="f_name" placeholder="first name" value="<%=firstName%>" />
                                 <%=(firstNameError != null) ? "<span style=\"color: red;\">" + firstNameError + "</span>" : ""%>
                               </div>
 
                               <div class="mb-3 col-md-6">
                                 <label for="l_name" class="form-label">last name</label>
-                                <input class="form-control" type="text" id="l_name" name="l_name" placeholder="l name" value="<%=lastName%>"/>
+                                <input class="form-control" type="text" id="l_name" name="l_name" placeholder="last name" value="<%=lastName%>"/>
                                 <%=(lastNameError != null) ? "<span style=\"color: red;\">" + lastNameError + "</span>" : ""%>
                               </div>
 
                               <div class="mb-3 col-md-6">
-                                <label for="dob" class="form-label">dob</label>
-                                <input class="form-control" type="date" id="dob" name="dob" placeholder="dob" value="<%=dob%>"/>
+                                <label for="dob" class="form-label">date of birth</label>
+                                <input class="form-control" type="date" id="dob" name="dob" placeholder="date of birth" value="<%=dob%>"/>
                                 <%=(dobError != null) ? "<span style=\"color: red;\">" + dobError + "</span>" : ""%>
                               </div>
 
                               <div class="mb-3 col-md-6">
-                                <label for="telephone" class="form-label">tel</label>
-                                <input class="form-control" type="tel" id="telephone" name="telephone" placeholder="telephone" value="<%=telephoneNumber%>"/>
+                                <label for="telephone" class="form-label">telephone number</label>
+                                <input class="form-control" type="tel" id="telephone" name="telephone" placeholder="telephone number" value="<%=telephoneNumber%>"/>
                                 <%=(telephoneNumberError != null) ? "<span style=\"color: red;\">" + telephoneNumberError + "</span>" : ""%>
                               </div>
 
@@ -263,8 +251,8 @@
                               if (updateUserEmail == null) {
                               %>
                               <div class="mb-3 col-md-6">
-                                <label for="password" class="form-label">pass</label>
-                                <input class="form-control" type="text" id="password" name="password" placeholder="pass" value="<%=password%>"/>
+                                <label for="password" class="form-label">password</label>
+                                <input class="form-control" type="text" id="password" name="password" placeholder="password" value="<%=password%>"/>
                                 <%=(passwordError != null) ? "<span style=\"color: red;\">" + passwordError + "</span>" : ""%>
                               </div>
                               <%
@@ -274,8 +262,8 @@
                             if (updateUserEmail == null) {
                             %>
                               <div class="mb-3 col-md-6">
-                                <label for="confPassword" class="form-label">pass1</label>
-                                <input class="form-control" type="text" id="confPassword" name="confPassword" placeholder="pass1" value="<%=confirmPassword%>"/>
+                                <label for="confPassword" class="form-label">confirm Password</label>
+                                <input class="form-control" type="text" id="confPassword" name="confPassword" placeholder="confirm Password" value="<%=confirmPassword%>"/>
                                 <%=(confirmPasswordError != null) ? "<span style=\"color: red;\">" + confirmPasswordError + "</span>" : ""%>
                               </div>
                               <%
@@ -286,44 +274,21 @@
 								<%=(common != null) ? "<span style=\"color: red;\">" + common + "</span>" : ""%>
 							</div>
                             <div class="mt-2">
-                              <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                              <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+                              <button type="submit" class="btn btn-primary me-2">Create Technician</button>
+                              <a href="index.jsp" class="btn btn-outline-secondary">back</a>
                             </div>
                           </form>
                         </div>
-                        <!-- /Account -->
                       </div>
                 </div>
             </div>
-            <!-- Footer -->
-            <footer class="content-footer footer bg-footer-theme">
-              <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-                <div class="mb-2 mb-md-0">
-                  ©
-                  <script>
-                    document.write(new Date().getFullYear());
-                  </script>
-                  , made with ❤️ by
-                  <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
-                </div>
-              </div>
-            </footer>
-            <!-- / Footer -->
-
             <div class="content-backdrop fade"></div>
           </div>
-          <!-- Content wrapper -->
         </div>
-        <!-- / Layout page -->
       </div>
 
-      <!-- Overlay -->
       <div class="layout-overlay layout-menu-toggle"></div>
     </div>
-    <!-- / Layout wrapper -->
-
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
     <script src="../back-end/assets/vendor/libs/jquery/jquery.js"></script>
     <script src="../back-end/assets/vendor/libs/popper/popper.js"></script>
     <script src="../back-end/assets/vendor/js/bootstrap.js"></script>

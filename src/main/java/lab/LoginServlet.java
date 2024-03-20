@@ -48,6 +48,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("hello");
+		System.out.println("hello");
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		Map<String, String> fieldErrors = new HashMap<>();

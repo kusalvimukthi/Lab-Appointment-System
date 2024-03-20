@@ -4,7 +4,9 @@
     <%@ page import="java.util.Map"%>
     <%@ page import="core.SessionManage"%>
     <%@ page import="controller.MedicalController"%>
+    <%@ page import="controller.AppoimentController"%>
     <%@ page import="modal.MedicalTest"%>
+    <%@ page import="modal.Appointment"%>
     
     <%
     String userEmail = (String) session.getAttribute("user-email");
@@ -14,7 +16,8 @@
     if (userFirstName == null || userEmail == null) {
         response.sendRedirect("../login.jsp");
     }
-     %>
+    String appoiment_id = request.getParameter("appoiment-id");
+    %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -171,40 +174,40 @@
                         <!-- Account -->
                         <hr class="my-0" />
                         <div class="card-body">
-                          <form id="formAccountSettings" method="post" action="MedicalTestServlet">
+                          <form id="formAccountSettings" method="post" action="UpdateAppoimentServlet">
                             <div class="row">
-                              <div class="mb-3 col-md-6">
-                                <label for="defaultSelect" class="form-label">technologist</label>
-                                <select id="defaultSelect" class="form-select">
-                                  <option>Default select</option>
-                                  <option value="1">One</option>
-                                  <option value="2">Two</option>
-                                  <option value="3">Three</option>
-                                </select>
-                              </div>
-                              <div class="mb-3 col-md-6">
-                                <label for="defaultSelect" class="form-label">Status</label>
-                                <select id="defaultSelect" class="form-select">
-                                  <option>Default select</option>
-                                  <option value="1">One</option>
-                                  <option value="2">Two</option>
-                                  <option value="3">Three</option>
-                                </select>
-                              </div>
-                              <div class="mb-3 col-md-6">
-                                <label for="defaultSelect" class="form-label">result</label>
-                                <select id="defaultSelect" class="form-select">
-                                  <option>Default select</option>
-                                  <option value="1">One</option>
-                                  <option value="2">Two</option>
-                                  <option value="3">Three</option>
-                                </select>
-                              </div>
-                              <div class="mb-3 col-md-6">
-                                <label for="formFileMultiple" class="form-label">report</label>
-                                <input class="form-control" type="file" id="formFileMultiple" multiple />
-                              </div>
 
+                              <input type="hidden" name="appoiment_id" value="<%=appoiment_id %>">
+                              <div class="mb-3 col-md-6">
+                                <label for="status" class="form-label">Status</label>
+                                <select id="status" class="form-select" name="status">
+                                  <option>Default select</option>
+                                  <option value="1">pending</option>
+                                  <option value="2">completed</option>
+                                </select>
+                              </div>
+                              <div class="mb-3 col-md-6">
+                                <label for="result" class="form-label">result</label>
+                                <select id="result" class="form-select" name="result">
+                                  <option>Default select</option>
+                                  <option value="Normal">Normal</option>
+                                  <option value="Low">Low</option>
+                                  <option value="Risk">Risk</option>
+                                </select>
+                              </div>
+                              <div class="mb-3 col-md-6">
+                                <label for="report" class="form-label">report</label>
+                                <select id="report" class="form-select" name="report">
+                                  <option>Default report</option>
+                                  <option value="aa">aa</option>
+                                  <option value="bb">bb</option>
+                                  <option value="cc">cc</option>
+                                </select>
+                              </div>
+                              <!-- <div class="mb-3 col-md-6">
+                                <label for="file" class="form-label">report</label>
+                                <input class="form-control" type="file" id="file" multiple  name="file"/>
+                              </div> -->
                             </div>
                             <div class="mt-2">
                               <button type="submit" class="btn btn-primary me-2">Save changes</button>

@@ -201,6 +201,39 @@ public class AppoimentController {
 		}
 		return appointmentList;
 	}
+	
+	public static Appointment updateAppoiments(String appoiment_id, String status, String result, String report,
+			String id) {
+		System.out.println("values");
+		System.out.println(status);
+		System.out.println(report);
+		System.out.println(result);
+		System.out.println(appoiment_id);
+		Connection con = null;
+		PreparedStatement preparedStatement = null;
+		try {
+			con = DbConnection.getConnection();
+			String sql = "UPDATE medical_test_records SET status_id=?, report=?, result=?, technician_id=? WHERE appointment_id=?";
+			preparedStatement = con.prepareStatement(sql);
+			preparedStatement.setString(1, status);
+			preparedStatement.setString(2, report);
+			preparedStatement.setString(3, result);
+			preparedStatement.setString(4, id);
+			preparedStatement.setString(5, appoiment_id);
+			int rowsAffected = preparedStatement.executeUpdate();
+			System.out.println(rowsAffected);
+			if (rowsAffected > 0) {
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DbConnection.closeConnection(con);
+		}
+		return null;
+	}
+
+
 
 }
 
