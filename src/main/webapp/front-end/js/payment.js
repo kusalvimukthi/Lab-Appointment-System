@@ -70,3 +70,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+function updateDetails() {
+  var dropdown = document.getElementById("medical_test");
+  var selectedOption = dropdown.options[dropdown.selectedIndex];
+  var testNameElement = document.getElementById("testname");
+  var valuesElement = document.getElementById("valuess");
+
+  testNameElement.textContent = selectedOption.textContent;
+  
+  // Mapping of option values to corresponding values
+  var valueMap = {
+      "0": 0,
+      "1": 400,
+      "2": 500,
+      "3": 0 
+  };
+
+  // Get the corresponding value based on the selected option
+  var selectedValue = valueMap[selectedOption.value];
+
+  valuesElement.textContent = selectedValue;
+}

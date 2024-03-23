@@ -174,24 +174,51 @@ public class AppoimentController {
 		return null;
 	}
 	
-	public static List<Appointment> getAllAppointments() {
+	public static List<Appointment> getAllAppointments(Integer user_id) {
 		Connection con = null;
 		List<Appointment> appointmentList = new ArrayList<>();
 		ResultSet rs = null;
+		System.out.println(user_id + "user id");
+		PreparedStatement pst = null;
 		try {
 			con = DbConnection.getConnection();
-			String query = "SELECT * FROM appointments";
-			PreparedStatement pst = con.prepareStatement(query);
+			String query = null;
+			if (user_id != null) {
+				 query = "SELECT appointments.id, users.f_name, users.l_name, appointments.appointment_status, " +
+	                    "appointments.amount, appointments.recommended_doctor, appointments.select_date, " +
+	                    "appointments.select_time, medical_test_records.status_id, medical_test_records.report, " +
+	                    "medical_test_records.result " +
+	                    "FROM appointments " +
+	                    "INNER JOIN users ON appointments.user_id = users.id " +
+	                    "LEFT JOIN medical_test_records ON appointments.id = medical_test_records.appointment_id " +
+	                    "WHERE appointments.user_id = ?";
+				 pst = con.prepareStatement(query);
+				 pst.setInt(1, user_id);
+			}else {
+				 query = "SELECT appointments.id, users.f_name, users.l_name, appointments.appointment_status, " +
+	                    "appointments.amount, appointments.recommended_doctor, appointments.select_date, " +
+	                    "appointments.select_time, medical_test_records.status_id, medical_test_records.report, " +
+	                    "medical_test_records.result " +
+	                    "FROM appointments " +
+	                    "INNER JOIN users ON appointments.user_id = users.id " +
+	                    "LEFT JOIN medical_test_records ON appointments.id = medical_test_records.appointment_id ";
+				 pst = con.prepareStatement(query);
+			}
+			
+			
 			rs = pst.executeQuery();
 			while (rs.next()) {
 				Appointment appointment = new Appointment();
-                appointment.setId(rs.getInt("id"));
-                appointment.setUserId(rs.getInt("user_id"));
-                appointment.setAppointmentStatus(rs.getString("appointment_status"));
-                appointment.setAmount(rs.getDouble("amount"));
-                appointment.setRecommendedDoctor(rs.getString("recommended_doctor"));
-                appointment.setSelectDate(rs.getString("select_date"));
-                appointment.setSelectTime(rs.getString("select_time"));
+	            appointment.setId(rs.getInt("id"));
+	            appointment.setUserName(rs.getString("f_name") + " " + rs.getString("l_name")); // Combine first name and last name
+	            appointment.setAppointmentStatus(rs.getString("appointment_status"));
+	            appointment.setAmount(rs.getDouble("amount"));
+	            appointment.setRecommendedDoctor(rs.getString("recommended_doctor"));
+	            appointment.setSelectDate(rs.getString("select_date"));
+	            appointment.setSelectTime(rs.getString("select_time"));
+	            appointment.setStatusId(rs.getInt("status_id"));
+	            appointment.setReport(rs.getString("report"));
+	            appointment.setResult(rs.getString("result"));
 				appointmentList.add(appointment);
 			}
 		} catch (SQLException e) {
@@ -202,36 +229,30 @@ public class AppoimentController {
 		return appointmentList;
 	}
 	
-	public static Appointment updateAppoiments(String appoiment_id, String status, String result, String report,
-			String id) {
-		System.out.println("values");
-		System.out.println(status);
-		System.out.println(report);
-		System.out.println(result);
-		System.out.println(appoiment_id);
-		Connection con = null;
-		PreparedStatement preparedStatement = null;
-		try {
-			con = DbConnection.getConnection();
-			String sql = "UPDATE medical_test_records SET status_id=?, report=?, result=?, technician_id=? WHERE appointment_id=?";
-			preparedStatement = con.prepareStatement(sql);
-			preparedStatement.setString(1, status);
-			preparedStatement.setString(2, report);
-			preparedStatement.setString(3, result);
-			preparedStatement.setString(4, id);
-			preparedStatement.setString(5, appoiment_id);
-			int rowsAffected = preparedStatement.executeUpdate();
-			System.out.println(rowsAffected);
-			if (rowsAffected > 0) {
-				
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DbConnection.closeConnection(con);
-		}
-		return null;
-	}
+	 public static Appointment updateAppoiments(String appoiment_id, String status, String result,
+			 String fileUrl, String id) {
+	        Connection con = null;
+	        PreparedStatement preparedStatement = null;
+	        try {
+	            con = DbConnection.getConnection();
+	            String sql = "UPDATE medical_test_records SET status_id=?, report=?, result=?, technician_id=? WHERE appointment_id=?";
+	            preparedStatement = con.prepareStatement(sql);
+	            preparedStatement.setString(1, status);
+	            preparedStatement.setString(2, fileUrl);
+	            preparedStatement.setString(3, result);
+	            preparedStatement.setString(4, id);
+	            preparedStatement.setString(5, appoiment_id);
+	            int rowsAffected = preparedStatement.executeUpdate();
+	            if (rowsAffected > 0) {
+	                // If update is successful, you might want to return the updated appointment
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } finally {
+	            DbConnection.closeConnection(con);
+	        }
+	        return null;
+	    }
 
 
 

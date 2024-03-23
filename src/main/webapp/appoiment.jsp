@@ -150,7 +150,7 @@
 						<div class="col-lg-6">
 							<div class="form-group">
 								<label for="medical_test">Select Test</label>
-								<select class="form-control" id="medical_test" name="medical_test">
+								<select class="form-control" id="medical_test" name="medical_test" onchange="updateDetails()">
 									<%
 									for (MedicalTest medicalTest : medicalTestList) {
 									%>
@@ -200,18 +200,10 @@
 					<div class="form-check form-switch mb-2">
                         <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
                         <label class="form-check-label" for="flexSwitchCheckDefault"
-                          >Default switch checkbox input</label
+                          >Card Payment</label
                         >
                     </div>
 					<div class="hide hidden-element">
-						<div class="header flex-between flex-vertical-center">
-							<div class="flex-vertical-center">
-							  <i class="ai-bitcoin-fill size-xl pr-sm f-main-color"></i>
-							  <span class="title">
-								<strong>AceCoin</strong><span>Pay</span>
-							  </span>
-							</div>
-						  </div>
 						  <div class="card-data flex-fill flex-vertical">
 							<!-- Card Number -->
 							<div class="flex-between flex-vertical-center">
@@ -281,19 +273,6 @@
 								</div>
 							  </div>
 							</div>
-			  
-							<div class="flex-between">
-							  <div class="card-property-title">
-								<strong>Mobile No.</strong>
-								<span>Enter Mobile No.</span>
-							  </div>
-							  <div class="card-property-value">
-								<div class="input-container">
-								  <input id="phone" type="text" placeholder="Your Mobile No." />
-								  <i class="ai-phone"></i>
-								</div>
-							  </div>
-							</div>
 						  </div>
 						  <div class="action flex-center">
 							<button type="" class="b-main-color pointer">
@@ -341,19 +320,11 @@
 				  <ul class="purchase-props">
 					<li class="flex-between">
 					  <span>Company</span>
-					  <strong>Apple</strong>
+					  <strong>ABC Laboratories</strong>
 					</li>
 					<li class="flex-between">
-					  <span>Order number</span>
-					  <strong>429252965</strong>
-					</li>
-					<li class="flex-between">
-					  <span>Product</span>
-					  <strong>MacBook Air</strong>
-					</li>
-					<li class="flex-between">
-					  <span>VAT (20%)</span>
-					  <strong>$100.00</strong>
+					  <span>Test </span>
+					  <strong id="testname">N/A</strong>
 					</li>
 				  </ul>
 				</div>
@@ -362,8 +333,8 @@
 				  <div class="flex-fill flex-vertical">
 					<div class="total-label f-secondary-color">You have to Pay</div>
 					<div>
-					  <strong>549</strong>
-					  <small>.99 <span class="f-secondary-color">USD</span></small>
+					  <strong id="valuess">00</strong>
+					  <small>.00 <span class="f-secondary-color">LKR</span></small>
 					</div>
 				  </div>
 				  <i class="ai-coin size-lg"></i>

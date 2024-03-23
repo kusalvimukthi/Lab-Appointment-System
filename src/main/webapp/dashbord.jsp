@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 pageEncoding="ISO-8859-1"%>
+<%@ page import="modal.User"%>
 <%
 String userEmail = (String) session.getAttribute("user-email");
 String userFirstName = (String) session.getAttribute("user-first-name");
@@ -15,7 +16,7 @@ if (userFirstName == null || userEmail == null) {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+     <title>ABC Laboratories</title>
     <meta name="description" content="" />
 
     <link rel="icon" type="image/x-icon" href="./back-end//assets/img/favicon/favicon.ico" />
@@ -33,15 +34,12 @@ if (userFirstName == null || userEmail == null) {
   </head>
 
   <body>
-    <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
-        <!-- Menu -->
-
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
-              <span class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
+            <a href="index.jsp" class="app-brand-link">
+              <span class="app-brand-text demo menu-text fw-bolder ms-2">ABC LAB</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -61,12 +59,19 @@ if (userFirstName == null || userEmail == null) {
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
             </li>
+            <%
+            if (userRole != null) {
+            %>
             <li class="menu-item">
               <a href="appointment/index.jsp" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">Appointment</div>
               </a>
             </li>
+            <%
+            }
+            if ("technologist".equals(userRole) || "supervisor".equals(userRole)) {
+            %>
             <li class="menu-item">
               <a href="medical/index.jsp" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-crown"></i>
@@ -85,14 +90,13 @@ if (userFirstName == null || userEmail == null) {
                 <div data-i18n="Boxicons">Technologist</div>
               </a>
             </li>
+            <%
+            }
+            %>
           </ul>
         </aside>
-        <!-- / Menu -->
 
-        <!-- Layout container -->
         <div class="layout-page">
-          <!-- Navbar -->
-
           <nav
             class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
             id="layout-navbar"
@@ -105,7 +109,6 @@ if (userFirstName == null || userEmail == null) {
 
             <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
               <ul class="navbar-nav flex-row align-items-center ms-auto">
-                <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
@@ -122,8 +125,8 @@ if (userFirstName == null || userEmail == null) {
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">John Doe</span>
-                            <small class="text-muted">Admin</small>
+                            <span class="fw-semibold d-block">Hi, <%=userFirstName%> <%=userLastName%></span>
+                            <small class="text-muted"><%=userRole%></small>
                           </div>
                         </div>
                       </a>
@@ -139,49 +142,26 @@ if (userFirstName == null || userEmail == null) {
                     </li>
                   </ul>
                 </li>
-                <!--/ User -->
               </ul>
             </div>
           </nav>
 
-          <!-- / Navbar -->
-
-          <!-- Content wrapper -->
           <div class="content-wrapper">
-            <!-- Content -->
-
             <div class="container-xxl flex-grow-1 container-p-y">
               <div class="row">
                 <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
                   <div class="card h-100">
                     <div class="card-header d-flex align-items-center justify-content-between pb-0">
                       <div class="card-title mb-0">
-                        <h5 class="m-0 me-2">Order Statistics</h5>
-                        <small class="text-muted">42.82k Total Sales</small>
-                      </div>
-                      <div class="dropdown">
-                        <button
-                          class="btn p-0"
-                          type="button"
-                          id="orederStatistics"
-                          data-bs-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        >
-                          <i class="bx bx-dots-vertical-rounded"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="orederStatistics">
-                          <a class="dropdown-item" href="javascript:void(0);">Select All</a>
-                          <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
-                          <a class="dropdown-item" href="javascript:void(0);">Share</a>
-                        </div>
+                        <h5 class="m-0 me-2">Appointment Statistics</h5>
+                        <small class="text-muted">Your Most Trusted Medical Testing Partner</small>
                       </div>
                     </div>
                     <div class="card-body">
                       <div class="d-flex justify-content-between align-items-center mb-3">
                         <div class="d-flex flex-column align-items-center gap-1">
-                          <h2 class="mb-2">8,258</h2>
-                          <span>Total Orders</span>
+                          <h2 class="mb-2">2560</h2>
+                          <span>Total Appointments</span>
                         </div>
                         <div id="orderStatisticsChart"></div>
                       </div>
@@ -189,60 +169,60 @@ if (userFirstName == null || userEmail == null) {
                         <li class="d-flex mb-4 pb-1">
                           <div class="avatar flex-shrink-0 me-3">
                             <span class="avatar-initial rounded bg-label-primary"
-                              ><i class="bx bx-mobile-alt"></i
+                              ><i class="bx bx-heart"></i
                             ></span>
                           </div>
                           <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                             <div class="me-2">
-                              <h6 class="mb-0">Electronic</h6>
-                              <small class="text-muted">Mobile, Earbuds, TV</small>
+                              <h6 class="mb-0">Appointments</h6>
+                              <small class="text-muted">YTD</small>
                             </div>
                             <div class="user-progress">
-                              <small class="fw-semibold">82.5k</small>
+                              <small class="fw-semibold">2549</small>
                             </div>
                           </div>
                         </li>
                         <li class="d-flex mb-4 pb-1">
                           <div class="avatar flex-shrink-0 me-3">
-                            <span class="avatar-initial rounded bg-label-success"><i class="bx bx-closet"></i></span>
+                            <span class="avatar-initial rounded bg-label-success"><i class="bx bx-heart"></i></span>
                           </div>
                           <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                             <div class="me-2">
-                              <h6 class="mb-0">Fashion</h6>
-                              <small class="text-muted">T-shirt, Jeans, Shoes</small>
+                              <h6 class="mb-0">Completed</h6>
+                              <small class="text-muted">YTD</small>
                             </div>
                             <div class="user-progress">
-                              <small class="fw-semibold">23.8k</small>
+                              <small class="fw-semibold">2178</small>
                             </div>
                           </div>
                         </li>
                         <li class="d-flex mb-4 pb-1">
                           <div class="avatar flex-shrink-0 me-3">
-                            <span class="avatar-initial rounded bg-label-info"><i class="bx bx-home-alt"></i></span>
+                            <span class="avatar-initial rounded bg-label-info"><i class="bx bx-heart"></i></span>
                           </div>
                           <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                             <div class="me-2">
-                              <h6 class="mb-0">Decor</h6>
-                              <small class="text-muted">Fine Art, Dining</small>
+                              <h6 class="mb-0">Pending</h6>
+                              <small class="text-muted">YTD</small>
                             </div>
                             <div class="user-progress">
-                              <small class="fw-semibold">849k</small>
+                              <small class="fw-semibold">289</small>
                             </div>
                           </div>
                         </li>
                         <li class="d-flex">
                           <div class="avatar flex-shrink-0 me-3">
-                            <span class="avatar-initial rounded bg-label-secondary"
-                              ><i class="bx bx-football"></i
+                            <span class="avatar-initial rounded bg-label-danger"
+                              ><i class="bx bx-heart"></i
                             ></span>
                           </div>
                           <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                             <div class="me-2">
-                              <h6 class="mb-0">Sports</h6>
-                              <small class="text-muted">Football, Cricket Kit</small>
+                              <h6 class="mb-0">canceled</h6>
+                              <small class="text-muted">YTD</small>
                             </div>
                             <div class="user-progress">
-                              <small class="fw-semibold">99</small>
+                              <small class="fw-semibold">82</small>
                             </div>
                           </div>
                         </li>
@@ -250,161 +230,93 @@ if (userFirstName == null || userEmail == null) {
                     </div>
                   </div>
                 </div>
-                <!--/ Order Statistics -->
 
-                <!-- Transactions -->
-                <div class="col-md-6 col-lg-4 order-2 mb-4">
-                  <div class="card h-100">
-                    <div class="card-header d-flex align-items-center justify-content-between">
-                      <h5 class="card-title m-0 me-2">Transactions</h5>
-                      <div class="dropdown">
+                <div class="col-md-6 col-lg-6 order-2 mb-4">
+                  <div class="accordion" id="accordionExample">
+                    <div class="card accordion-item active">
+                      <h2 class="accordion-header" id="headingOne">
                         <button
-                          class="btn p-0"
                           type="button"
-                          id="transactionID"
-                          data-bs-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
+                          class="accordion-button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#accordionOne"
+                          aria-expanded="true"
+                          aria-controls="accordionOne"
                         >
-                          <i class="bx bx-dots-vertical-rounded"></i>
+                        What is the purpose of a complete blood count (CBC) test?
                         </button>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="transactionID">
-                          <a class="dropdown-item" href="javascript:void(0);">Last 28 Days</a>
-                          <a class="dropdown-item" href="javascript:void(0);">Last Month</a>
-                          <a class="dropdown-item" href="javascript:void(0);">Last Year</a>
+                      </h2>
+
+                      <div
+                        id="accordionOne"
+                        class="accordion-collapse collapse show"
+                        data-bs-parent="#accordionExample"
+                      >
+                        <div class="accordion-body">
+                          A CBC test is performed to evaluate overall health and detect a variety of disorders such as anemia, infection, and leukemia by measuring different components of blood like red blood cells, white blood cells, and platelets.
                         </div>
                       </div>
                     </div>
-                    <div class="card-body">
-                      <ul class="p-0 m-0">
-                        <li class="d-flex mb-4 pb-1">
-                          <div class="avatar flex-shrink-0 me-3">
-                            <img src="./back-end//assets/img/icons/unicons/paypal.png" alt="User" class="rounded" />
-                          </div>
-                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                            <div class="me-2">
-                              <small class="text-muted d-block mb-1">Paypal</small>
-                              <h6 class="mb-0">Send money</h6>
-                            </div>
-                            <div class="user-progress d-flex align-items-center gap-1">
-                              <h6 class="mb-0">+82.6</h6>
-                              <span class="text-muted">USD</span>
-                            </div>
-                          </div>
-                        </li>
-                        <li class="d-flex mb-4 pb-1">
-                          <div class="avatar flex-shrink-0 me-3">
-                            <img src="./back-end//assets/img/icons/unicons/wallet.png" alt="User" class="rounded" />
-                          </div>
-                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                            <div class="me-2">
-                              <small class="text-muted d-block mb-1">Wallet</small>
-                              <h6 class="mb-0">Mac'D</h6>
-                            </div>
-                            <div class="user-progress d-flex align-items-center gap-1">
-                              <h6 class="mb-0">+270.69</h6>
-                              <span class="text-muted">USD</span>
-                            </div>
-                          </div>
-                        </li>
-                        <li class="d-flex mb-4 pb-1">
-                          <div class="avatar flex-shrink-0 me-3">
-                            <img src="./back-end//assets/img/icons/unicons/chart.png" alt="User" class="rounded" />
-                          </div>
-                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                            <div class="me-2">
-                              <small class="text-muted d-block mb-1">Transfer</small>
-                              <h6 class="mb-0">Refund</h6>
-                            </div>
-                            <div class="user-progress d-flex align-items-center gap-1">
-                              <h6 class="mb-0">+637.91</h6>
-                              <span class="text-muted">USD</span>
-                            </div>
-                          </div>
-                        </li>
-                        <li class="d-flex mb-4 pb-1">
-                          <div class="avatar flex-shrink-0 me-3">
-                            <img src="./back-end//assets/img/icons/unicons/cc-success.png" alt="User" class="rounded" />
-                          </div>
-                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                            <div class="me-2">
-                              <small class="text-muted d-block mb-1">Credit Card</small>
-                              <h6 class="mb-0">Ordered Food</h6>
-                            </div>
-                            <div class="user-progress d-flex align-items-center gap-1">
-                              <h6 class="mb-0">-838.71</h6>
-                              <span class="text-muted">USD</span>
-                            </div>
-                          </div>
-                        </li>
-                        <li class="d-flex mb-4 pb-1">
-                          <div class="avatar flex-shrink-0 me-3">
-                            <img src="./back-end//assets/img/icons/unicons/wallet.png" alt="User" class="rounded" />
-                          </div>
-                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                            <div class="me-2">
-                              <small class="text-muted d-block mb-1">Wallet</small>
-                              <h6 class="mb-0">Starbucks</h6>
-                            </div>
-                            <div class="user-progress d-flex align-items-center gap-1">
-                              <h6 class="mb-0">+203.33</h6>
-                              <span class="text-muted">USD</span>
-                            </div>
-                          </div>
-                        </li>
-                        <li class="d-flex">
-                          <div class="avatar flex-shrink-0 me-3">
-                            <img src="./back-end//assets/img/icons/unicons/cc-warning.png" alt="User" class="rounded" />
-                          </div>
-                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                            <div class="me-2">
-                              <small class="text-muted d-block mb-1">Mastercard</small>
-                              <h6 class="mb-0">Ordered Food</h6>
-                            </div>
-                            <div class="user-progress d-flex align-items-center gap-1">
-                              <h6 class="mb-0">-92.45</h6>
-                              <span class="text-muted">USD</span>
-                            </div>
-                          </div>
-                        </li>
-                      </ul>
+                    <div class="card accordion-item">
+                      <h2 class="accordion-header" id="headingTwo">
+                        <button
+                          type="button"
+                          class="accordion-button collapsed"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#accordionTwo"
+                          aria-expanded="false"
+                          aria-controls="accordionTwo"
+                        >
+                        What does a lipid profile test assess?
+                        </button>
+                      </h2>
+                      <div
+                        id="accordionTwo"
+                        class="accordion-collapse collapse"
+                        aria-labelledby="headingTwo"
+                        data-bs-parent="#accordionExample"
+                      >
+                        <div class="accordion-body">
+                          A lipid profile test measures cholesterol levels (including HDL, LDL, and total cholesterol) and triglycerides in the blood, providing insights into heart health and risk factors for cardiovascular diseases.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card accordion-item">
+                      <h2 class="accordion-header" id="headingThree">
+                        <button
+                          type="button"
+                          class="accordion-button collapsed"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#accordionThree"
+                          aria-expanded="false"
+                          aria-controls="accordionThree"
+                        >
+                        Why would someone need a thyroid function test?
+                        </button>
+                      </h2>
+                      <div
+                        id="accordionThree"
+                        class="accordion-collapse collapse"
+                        aria-labelledby="headingThree"
+                        data-bs-parent="#accordionExample"
+                      >
+                        <div class="accordion-body">
+                          A thyroid function test evaluates the functioning of the thyroid gland by measuring levels of thyroid hormones (T3, T4) and thyroid-stimulating hormone (TSH). It helps diagnose thyroid disorders such as hypothyroidism and hyperthyroidism.
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <!--/ Transactions -->
               </div>
             </div>
-            <!-- / Content -->
-
-            <!-- Footer -->
-            <footer class="content-footer footer bg-footer-theme">
-              <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-                <div class="mb-2 mb-md-0">
-                  ©
-                  <script>
-                    document.write(new Date().getFullYear());
-                  </script>
-                  , made with ❤️ by
-                  <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
-                </div>
-              </div>
-            </footer>
-            <!-- / Footer -->
 
             <div class="content-backdrop fade"></div>
           </div>
-          <!-- Content wrapper -->
         </div>
-        <!-- / Layout page -->
       </div>
-
-      <!-- Overlay -->
       <div class="layout-overlay layout-menu-toggle"></div>
     </div>
-    <!-- / Layout wrapper -->
 
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
     <script src="./back-end/assets/vendor/libs/jquery/jquery.js"></script>
     <script src="./back-end/assets/vendor/libs/popper/popper.js"></script>
     <script src="./back-end/assets/vendor/js/bootstrap.js"></script>

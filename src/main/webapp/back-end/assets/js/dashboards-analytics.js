@@ -427,9 +427,9 @@
         width: 130,
         type: 'donut'
       },
-      labels: ['Electronic', 'Sports', 'Decor', 'Fashion'],
-      series: [85, 15, 50, 50],
-      colors: [config.colors.primary, config.colors.secondary, config.colors.info, config.colors.success],
+      labels: ['Appointments', 'Completed', 'Pending', 'canceled'],
+      series: [85, 68, 15, 10],
+      colors: [config.colors.primary, config.colors.success, config.colors.info, config.colors.danger],
       stroke: {
         width: 5,
         colors: cardColor
@@ -473,7 +473,7 @@
                 show: true,
                 fontSize: '0.8125rem',
                 color: axisColor,
-                label: 'Weekly',
+                label: 'March',
                 formatter: function (w) {
                   return '38%';
                 }
