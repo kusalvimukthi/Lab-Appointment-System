@@ -135,6 +135,10 @@
                 <div data-i18n="Boxicons">Users</div>
               </a>
             </li>
+            <%
+            }
+            if ("supervisor".equals(userRole)) {
+            %>
             <li class="menu-item">
               <a href="../technologist/index.jsp" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-crown"></i>
@@ -219,35 +223,36 @@
                               </div>
 
                               <div class="mb-3 col-md-6">
-                                <label for="medical_test_description" class="form-label">Medical Test Description</label>
-                                <input type="text" class="form-control" id="medical_test_description" name="medical_test_description" placeholder="f name" value="<%=testDescription%>" />
-                                <%=(descriptionError != null) ? "<span style=\"color: red;\">" + descriptionError + "</span>" : ""%>
-                              </div>
-
-                              <div class="mb-3 col-md-6">
-                                <label for="medical_test_amount" class="form-label">Medical Test Amount</label>
-                                <input class="form-control" type="number" min="1" step="0.01" id="medical_test_amount" name="medical_test_amount" placeholder="l name" value="<%=testAmount%>"/>
-                                <%=(amountError != null) ? "<span style=\"color: red;\">" + amountError + "</span>" : ""%>
-                              </div>
-
-                              <div class="mb-3 col-md-6">
                                 <label for="medical_test_processing_time" class="form-label">Medical Test Processing Time</label>
-                                <input class="form-control" type="number" min="1" step="0.25" id="medical_test_processing_time" name="medical_test_processing_time" placeholder="dob" value="<%=testProccesingTime%>"/>
+                                <input class="form-control" type="number" min="1" step="0.25" id="medical_test_processing_time" name="medical_test_processing_time"  value="<%=testProccesingTime%>"/>
                                 <%=(timeError != null) ? "<span style=\"color: red;\">" + timeError + "</span>" : ""%>
                               </div>
 
                               <div class="mb-3 col-md-6">
+                                <label for="medical_test_amount" class="form-label">Medical Test Amount</label>
+                                <input class="form-control" type="number" min="1" step="0.01" id="medical_test_amount" name="medical_test_amount"  value="<%=testAmount%>"/>
+                                <%=(amountError != null) ? "<span style=\"color: red;\">" + amountError + "</span>" : ""%>
+                              </div>
+
+                              <div class="mb-3 col-md-12">
+                                <label for="medical_test_description" class="form-label">Medical Test Description</label>
+                                <textarea type="text" class="form-control" id="medical_test_description" name="medical_test_description"   rows="2"/><%=testDescription%></textarea>
+                                <%=(descriptionError != null) ? "<span style=\"color: red;\">" + descriptionError + "</span>" : ""%>
+                              </div>
+
+                              <div class="mb-3 col-md-12">
                                 <label for="medical_test_normal_record_data" class="form-label">Medical Test Normal</label>
-                                <input class="form-control" type="tel" id="medical_test_normal_record_data" name="medical_test_normal_record_data" placeholder="medical_test_normal_record_data" value="<%=testNormalRecordData%>"/>
+                                <textarea class="form-control" type="tel" id="medical_test_normal_record_data" name="medical_test_normal_record_data"   rows="2" /><%=testNormalRecordData%></textarea>
                                 <%=(dataError != null) ? "<span style=\"color: red;\">" + dataError + "</span>" : ""%>
                               </div>
+                              
                             </div>
                             <div class="form-group">
                                 <%=(common != null) ? "<span style=\"color: red;\">" + common + "</span>" : ""%>
                             </div>
                             <div class="mt-2">
                               <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                              <a href="index.jsp" class="btn btn-outline-secondary">back</a>
+                              <a href="index.jsp" class="btn btn-outline-secondary">Back Test Records</a>
                             </div>
                           </form>
                         </div>

@@ -138,6 +138,10 @@
                 <div data-i18n="Boxicons">Users</div>
               </a>
             </li>
+            <%
+            }
+            if ("supervisor".equals(userRole)) {
+            %>
             <li class="menu-item active">
               <a href="index.jsp" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-crown"></i>
@@ -204,7 +208,7 @@
             <div class="container-xxl flex-grow-1 container-p-y">
                 <div class="row">
                     <div class="card mb-4">
-                        <h5 class="card-header"><%=(updateUserEmail == null) ? "Create a New Technician" : "Update a Technician"%></h5>
+                        <h5 class="card-header"><%=(updateUserEmail == null) ? "Create a New Technologist" : "Update a Technologist"%></h5>
                         <hr class="my-0" />
                         <div class="card-body">
                           <form id="formAccountSettings" method="post" action="TechniciansServlet">

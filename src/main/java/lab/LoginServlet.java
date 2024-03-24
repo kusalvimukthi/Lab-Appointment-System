@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.sendRedirect("login.jsp");
 	}
-
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -52,10 +52,8 @@ public class LoginServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Map<String, String> fieldErrors = new HashMap<>();
 		boolean status = false;
-		
 		String emailAddress = request.getParameter("email");
 		String password = request.getParameter("password");
-
 		String emailError = Validation.isFieldRequired("email", emailAddress);
 		if (emailError != null) {
 			fieldErrors.put("email", emailError);
@@ -65,7 +63,6 @@ public class LoginServlet extends HttpServlet {
 				fieldErrors.put("email", emailError1);
 			}
 		}
-
 		String passwordError = Validation.isFieldRequired("password", password);
 		if (passwordError != null) {
 			fieldErrors.put("password", passwordError);
@@ -75,7 +72,6 @@ public class LoginServlet extends HttpServlet {
 				fieldErrors.put("password", passwordError1);
 			}
 		}
-
 		if (fieldErrors.isEmpty()) {
 			try {
 				User user = UserController.authenticateUser(emailAddress, password);

@@ -82,9 +82,21 @@ function updateDetails() {
   // Mapping of option values to corresponding values
   var valueMap = {
       "0": 0,
-      "1": 400,
-      "2": 500,
-      "3": 0 
+      "1": 500,
+      "2": 350,
+      "3": 600,
+      "4": 500,
+      "5": 900,
+      "6": 700,
+      "7": 1000,
+      "8": 1200,
+      "9": 1500,
+      "10": 450,
+      "11": 550,
+      "12": 3500,
+      "13": 4000,
+      "14": 650,
+      "15": 850 
   };
 
   // Get the corresponding value based on the selected option

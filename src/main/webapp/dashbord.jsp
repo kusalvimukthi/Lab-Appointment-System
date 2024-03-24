@@ -9,6 +9,17 @@ String userRole = (String) session.getAttribute("user-role");
 if (userFirstName == null || userEmail == null) {
 	response.sendRedirect("login.jsp");
 }
+String totalAppointments = "2560";
+String appointmentsCompleted = "2178";
+String pendingAppointments = "289";
+String canceledAppointments = "82";
+
+if ("patient".equals(userRole)) {
+    totalAppointments = "6";
+    appointmentsCompleted = "3";
+    pendingAppointments = "1";
+    canceledAppointments = "2";
+}
 %>
 <!DOCTYPE html>
 <html>
@@ -84,6 +95,10 @@ if (userFirstName == null || userEmail == null) {
                 <div data-i18n="Boxicons">Users</div>
               </a>
             </li>
+            <%
+            }
+            if ("supervisor".equals(userRole)) {
+            %>
             <li class="menu-item">
               <a href="technologist/index.jsp" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-crown"></i>
@@ -160,7 +175,7 @@ if (userFirstName == null || userEmail == null) {
                     <div class="card-body">
                       <div class="d-flex justify-content-between align-items-center mb-3">
                         <div class="d-flex flex-column align-items-center gap-1">
-                          <h2 class="mb-2">2560</h2>
+                          <h2 class="mb-2"><%= totalAppointments %></h2>
                           <span>Total Appointments</span>
                         </div>
                         <div id="orderStatisticsChart"></div>
@@ -178,7 +193,7 @@ if (userFirstName == null || userEmail == null) {
                               <small class="text-muted">YTD</small>
                             </div>
                             <div class="user-progress">
-                              <small class="fw-semibold">2549</small>
+                              <small class="fw-semibold"><%= totalAppointments %></small>
                             </div>
                           </div>
                         </li>
@@ -192,7 +207,7 @@ if (userFirstName == null || userEmail == null) {
                               <small class="text-muted">YTD</small>
                             </div>
                             <div class="user-progress">
-                              <small class="fw-semibold">2178</small>
+                              <small class="fw-semibold"><%= appointmentsCompleted %></small>
                             </div>
                           </div>
                         </li>
@@ -202,27 +217,27 @@ if (userFirstName == null || userEmail == null) {
                           </div>
                           <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                             <div class="me-2">
-                              <h6 class="mb-0">Pending</h6>
+                              <h6 class="mb-0">Processing</h6>
                               <small class="text-muted">YTD</small>
                             </div>
                             <div class="user-progress">
-                              <small class="fw-semibold">289</small>
+                              <small class="fw-semibold"><%= pendingAppointments %></small>
                             </div>
                           </div>
                         </li>
                         <li class="d-flex">
                           <div class="avatar flex-shrink-0 me-3">
-                            <span class="avatar-initial rounded bg-label-danger"
+                            <span class="avatar-initial rounded bg-label-dark"
                               ><i class="bx bx-heart"></i
                             ></span>
                           </div>
                           <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                             <div class="me-2">
-                              <h6 class="mb-0">canceled</h6>
+                              <h6 class="mb-0">Booked</h6>
                               <small class="text-muted">YTD</small>
                             </div>
                             <div class="user-progress">
-                              <small class="fw-semibold">82</small>
+                              <small class="fw-semibold"><%= canceledAppointments %></small>
                             </div>
                           </div>
                         </li>

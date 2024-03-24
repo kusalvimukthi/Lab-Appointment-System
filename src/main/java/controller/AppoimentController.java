@@ -131,15 +131,22 @@ public class AppoimentController {
 							message.setFrom(new InternetAddress(EMAIL));
 							message.addRecipient(Message.RecipientType.TO, new InternetAddress(userEmail));
 							message.setSubject("ABC laboratory appointment. ID: "+appointmentId);
-							String htmlContent = "<html><body>" + "<h3>Hello,</h3>"
-									+ "<p>Thank you for choosing ABC laboratory for your medical tests. "
-									+ "We are thrilled to have you on board and look forward to providing you with exceptional service</p>"
-									+ "<br/><p>Your appointment details are as follows:.</p>"
-									+ "<p>Appointment Number : <strong>" + appointmentId + "</strong></p>" 
-									+ "<p>Booking date : <strong>" + booking_date + "</strong></p>" 
-									+ "<p>Booking time : <strong>" + booking_time + "</strong></p>" 
-									+ "<br/><p>Thank you,</p>"
-									+ "<p>The ABC Laboratories Team</p>" + "</body></html>";
+							String htmlContent = "<html><body>" +
+			                        "<div style='padding: 20px; border: 1px solid #ccc; border-radius: 5px;'>" +
+			                            "<h3>Hello,</h3>" +
+			                            "<p>Thank you for choosing ABC laboratory for your medical tests. " +
+			                            "We are thrilled to have you on board and look forward to providing you with exceptional service</p>" +
+			                            "<hr style='border: 0; border-top: 1px solid #ccc;'>" +
+			                            "<p>Your appointment details are as follows:</p>" +
+			                            "<p>Appointment Number: <strong>" + appointmentId + "</strong></p>" +
+			                            "<p>Booking date: <strong>" + booking_date + "</strong></p>" +
+			                            "<p>Booking time: <strong>" + booking_time + "</strong></p>" +
+			                            "<p>Total Amount: <strong>" + totalAmount + "</strong></p>" +
+			                            "<hr style='border: 0; border-top: 1px solid #ccc;'>" +
+			                            "<p>Thank you,</p>" +
+			                            "<p>The ABC Laboratories Team</p>" +
+			                        "</div>" +
+			                    "</body></html>";
 							message.setContent(htmlContent, "text/html");
 							Transport.send(message);
 							System.out.println("message sent successfully");
