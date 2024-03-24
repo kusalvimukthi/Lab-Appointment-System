@@ -93,6 +93,10 @@
                 <div data-i18n="Boxicons">Users</div>
               </a>
             </li>
+            <%
+            }
+            if ("supervisor".equals(userRole)) {
+            %>
             <li class="menu-item">
               <a href="../technologist/index.jsp" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-crown"></i>
@@ -171,27 +175,32 @@
                                 <label for="status" class="form-label">Status</label>
                                 <select id="status" class="form-select" name="status">
                                   <option>Default select</option>
-                                  <option value="1">pending</option>
-                                  <option value="2">completed</option>
+                                  <option value="2">pending</option>
+                                  <option value="3">processing</option>
+                                  <option value="4">completed</option>
                                 </select>
                               </div>
                               <div class="mb-3 col-md-6">
-                                <label for="result" class="form-label">result</label>
+                                <label for="result" class="form-label">Result</label>
                                 <select id="result" class="form-select" name="result">
                                   <option>Default select</option>
                                   <option value="Normal">Normal</option>
+                                  <option value="Abnormal">Abnormal</option>
+                                  <option value="Elevated">Elevated</option>
                                   <option value="Low">Low</option>
+                                  <option value="Borderline">Borderline</option>
                                   <option value="Risk">Risk</option>
+                                  <option value="Critical">Critical</option>
                                 </select>
                               </div>
                               <div class="mb-3 col-md-6">
-                                <label for="reportFile" class="form-label">Upload Report</label>
+                                <label for="reportFile" class="form-label">Upload Medical Report</label>
                                 <input class="form-control" type="file" id="reportFile" name="reportFile" accept=".pdf,.doc,.docx">
                               </div>
                             </div>
                             <div class="mt-2">
-                              <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                              <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+                              <button type="submit" class="btn btn-primary me-2">Save Appoiment</button>
+                              <a href="index.jsp" class="btn btn-outline-secondary">View Appoiment</a>
                             </div>
                           </form>
                         </div>

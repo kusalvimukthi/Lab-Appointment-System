@@ -95,6 +95,10 @@
                 <div data-i18n="Boxicons">Users</div>
               </a>
             </li>
+            <%
+            }
+            if ("supervisor".equals(userRole)) {
+            %>
             <li class="menu-item">
               <a href="../technologist/index.jsp" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-crown"></i>

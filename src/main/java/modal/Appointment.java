@@ -72,11 +72,11 @@ public class Appointment {
     
     public String getStatusId() {
     	String statusText = "";
-    	if (statusId == 1) {
+    	if (statusId == 2) {
     	    statusText = "<span class=\"badge bg-label-primary\">Pending</span>";
-    	} else if (statusId == 2) {
-    	    statusText = "<span class=\"badge bg-label-info\">Processing</span>";
     	} else if (statusId == 3) {
+    	    statusText = "<span class=\"badge bg-label-info\">Processing</span>";
+    	} else if (statusId == 4) {
     	    statusText = "<span class=\"badge bg-label-success\">Completed</span>";
     	} else {
     	    statusText = "<span class=\"badge bg-label-dark\">Booked</span>"; 
@@ -103,7 +103,14 @@ public class Appointment {
     }
 
     public String getResult() {
-        return result;
+        if (result != null && !result.isEmpty()) {
+            // If report URL is available, return an HTML anchor tag
+        	return result;
+        } else {
+            // If report URL is not available, return "N/A"
+            return "N/A";
+        }
+        
     }
 
     public void setResult(String result) {

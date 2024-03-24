@@ -98,6 +98,10 @@
                 <div data-i18n="Boxicons">Users</div>
               </a>
             </li>
+            <%
+            }
+            if ("supervisor".equals(userRole)) {
+            %>
             <li class="menu-item">
               <a href="../technologist/index.jsp" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-crown"></i>
@@ -196,10 +200,12 @@
 						        <td><%= appointment.getStatusId() %></td> 
  								    <td><%= appointment.getReport() %></td> 
 						        <td><%= appointment.getResult() %></td> 
-						        <td>
-						            <%-- Display link to edit page, passing appointment id as parameter --%>
-						            <a href="create.jsp?appoiment-id=<%= appointment.getId() %>">EDIT</a>
-						        </td>
+                    <td>
+                      <%-- Display link to edit page, passing appointment id as parameter --%>
+                      <% if ("technologist".equals(userRole) || "supervisor".equals(userRole)) { %>
+                          <a href="create.jsp?appoiment-id=<%= appointment.getId() %>">EDIT</a>
+                      <% } %>
+                  </td>
 						    </tr>
 						    <%
 						    }

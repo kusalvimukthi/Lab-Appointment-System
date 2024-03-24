@@ -49,7 +49,6 @@
   <title>ABC Laboratories</title>
   <link rel="shortcut icon" type="image/x-icon" href="./front-end/images/favicon.png" />
   <link rel="stylesheet" href="./front-end/plugins/bootstrap/css/bootstrap.min.css">
-  <!-- <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css'> -->
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css'>
   <link rel="stylesheet" href="./front-end/plugins/icofont/icofont.min.css">
   <link rel="stylesheet" href="./front-end/plugins/slick-carousel/slick/slick.css">
@@ -66,8 +65,8 @@
 			<div class="row align-items-center">
 				<div class="col-lg-6">
 					<ul class="top-bar-info list-inline-item pl-0 mb-0">
-						<li class="list-inline-item"><a href="mailto:support@gmail.com"><i class="icofont-support-faq mr-2"></i>support@novena.com</a></li>
-						<li class="list-inline-item"><i class="icofont-location-pin mr-2"></i>Address Ta-134/A, New York, USA </li>
+						<li class="list-inline-item"><a href="mailto:abclaboratories@email.com"><i class="icofont-support-faq mr-2"></i>abclaboratories@email.com</a></li>
+						<li class="list-inline-item"><i class="icofont-location-pin mr-2"></i>Address Kururnegala, Sri Lanka </li>
 					</ul>
 				</div>
 				<div class="col-lg-6">
@@ -130,16 +129,15 @@
     </div>
   </div>
 </section>
-<!-- contact form start -->
 
 <section class="contact-form-wrap section">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-6">
+            <div class="col-lg-10">
                 <div class="section-title text-center">
-                    <h2 class="text-md mb-2">Appoinment</h2>
+                    <h2 class="text-md mb-2">Schedule Your Appoinment</h2>
                     <div class="divider mx-auto my-4"></div>
-                    <p class="mb-5">Laboriosam exercitationem molestias beatae eos pariatur, similique, excepturi mollitia sit perferendis maiores ratione aliquam?</p>
+                    <p class="mb-5">Welcome to our appointment scheduling portal! We're thrilled that you've chosen to book with us. Please fill out the form below to secure your appointment slot. If you have any questions or need assistance, don't hesitate to reach out to our team. We look forward to serving you soon!</p>
                 </div>
             </div>
         </div>
@@ -149,7 +147,7 @@
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="form-group">
-								<label for="medical_test">Select Test</label>
+								<label for="medical_test">Select Medical Test</label>
 								<select class="form-control" id="medical_test" name="medical_test" onchange="updateDetails()">
 									<%
 									for (MedicalTest medicalTest : medicalTestList) {
@@ -164,9 +162,10 @@
 						</div>
 						<div class="col-lg-6">
 							<div class="form-group">
-								<label for="booking_time">booking time</label>
+								<label for="booking_time">Booking time</label>
 								<select class="form-control" id="booking_time" name="booking_time">
 									<option value="">Select Booking Time</option>
+									<option value="08:00">08:30</option>
 									<option value="09:00">09:00</option>
 									<option value="09:30">09:30</option>
 									<option value="10:00">10:00</option>
@@ -174,28 +173,40 @@
 									<option value="11:00">11:00</option>
 									<option value="11:30">11:30</option>
 									<option value="12:00">12:00</option>
+									<option value="12:30">12:30</option>
+									<option value="13:00">13:00</option>
+									<option value="13:30">13:30</option>
+									<option value="14:00">14:00</option>
+									<option value="14:30">14:30</option>
+									<option value="15:00">15:00</option>
+									<option value="15:30">15:30</option>
+									<option value="16:00">16:00</option>
+									<option value="16:30">16:30</option>
+									<option value="17:00">17:00</option>
+									<option value="17:30">17:30</option>
+									<option value="18:00">18:00</option>
 								</select>
 								<%=(bookingTimeError != null) ? "<span class=\"text-danger\">" + bookingTimeError + "</span>" : ""%>
 							  </div>
 						</div>
-						<div class="col-lg-6">
-							<div class="form-group">
-								<label for="booking_date">Booking Date</label>
-								<input type="date" class="form-control" id="booking_date" name="booking_date" placeholder="booking date" value="<%=booking_date%>">
-								<%=(bookingDateError != null) ? "<span class=\"text-danger\">" + bookingDateError + "</span>" : ""%>
-							</div>
-						</div>
+<div class="col-lg-6">
+    <div class="form-group">
+        <label for="booking_date">Booking Date</label>
+        <input type="date" class="form-control" id="booking_date" name="booking_date" placeholder="booking date" value="<%=booking_date%>" min="<%=java.time.LocalDate.now()%>">
+        <%=(bookingDateError != null) ? "<span class=\"text-danger\">" + bookingDateError + "</span>" : ""%>
+    </div>
+</div>
 				
 						<div class="col-lg-6">
 							<div class="form-group">
 								<label for="recommended_doctor">Recommended Doctor</label>
-								<input type="text" class="form-control" id="recommended_doctor" name="recommended_doctor" placeholder="name@example.com" value="<%=recommended_doctor%>">
+								<input type="text" class="form-control" id="recommended_doctor" name="recommended_doctor" placeholder="Recommended Doctor Name" value="<%=recommended_doctor%>">
 								<%=(recommendedDoctorError != null) ? "<span class=\"text-danger\">" + recommendedDoctorError + "</span>" : ""%>
 							</div>
 						</div>
 					</div>
 					<div class="text-center makeappoinment">
-						<button class="btn btn-main btn-round-full" type="submit"><i class="icofont-simple-right ml-2  "></i>Make Appoinment</button>
+						<button class="btn btn-main btn-round-full" type="submit">Make Appoinment <i class="icofont-simple-right ml-2"></i></button>
                     </div>
 					<div class="form-check form-switch mb-2">
                         <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
@@ -205,15 +216,12 @@
                     </div>
 					<div class="hide hidden-element">
 						  <div class="card-data flex-fill flex-vertical">
-							<!-- Card Number -->
 							<div class="flex-between flex-vertical-center">
 							  <div class="card-property-title">
 								<strong>Card Number</strong>
 								<span>Enter 16-digit card number on the card</span>
 							  </div>
 							</div>
-			  
-							<!-- Card Field -->
 							<div class="flex-between">
 							  <div class="card-number flex-vertical-center flex-fill">
 								<div class="card-number-field flex-vertical-center flex-fill">
@@ -222,13 +230,11 @@
 									<path fill="#d50000" d="M16 10A14 14 0 1 0 16 38A14 14 0 1 0 16 10Z" />
 									<path fill="#ff3d00" d="M18,24c0,4.755,2.376,8.95,6,11.48c3.624-2.53,6-6.725,6-11.48s-2.376-8.95-6-11.48 C20.376,15.05,18,19.245,18,24z" />
 								  </svg>
-								  <input type="text" placeholder="Card Number" class="form-control" id="cardNumber" onkeypress="return onlyNumberKey(event)" maxlength="19" name="cardNumber" data-bound="carddigits_mock" data-def="0000 0000 0000 0000" required />
+								  <input type="text" placeholder="Card Number" class="form-control" id="cardNumber" onkeypress="return onlyNumberKey(event)" maxlength="19" name="cardNumber" data-bound="carddigits_mock" data-def="0000 0000 0000 0000"/>
 								</div>
 								<i class="ai-circle-check-fill size-lg f-main-color"></i>
 							  </div>
 							</div>
-			  
-							<!-- Expiry Date -->
 							<div class="flex-between">
 							  <div class="card-property-title">
 								<strong>Expiry Date</strong>
@@ -244,8 +250,6 @@
 								</div>
 							  </div>
 							</div>
-			  
-							<!-- CCV Number -->
 							<div class="flex-between">
 							  <div class="card-property-title">
 								<strong>CVC Number</strong>
@@ -259,8 +263,6 @@
 								</div>
 							  </div>
 							</div>
-			  
-							<!-- Name -->
 							<div class="flex-between">
 							  <div class="card-property-title">
 								<strong>Cardholder Name</strong>
@@ -344,7 +346,6 @@
     </div>
 </section>
 
-<!-- footer Start -->
 <footer class="footer section">
 	<div class="container">
 		<div class="row">
@@ -437,7 +438,6 @@
     <script src="./front-end/plugins/counterup/jquery.counterup.min.js"></script>
     <script src="./front-end/plugins/google-map/map.js"></script>
 	<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js'></script>
-	<!-- <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js'></script> -->
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js'></script>  
     <script src="./front-end/js/script.js"></script>
     	<script src="./front-end/js/payment.js"></script>

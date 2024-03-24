@@ -28,8 +28,8 @@ String userRole = (String) session.getAttribute("user-role");
 			<div class="row align-items-center">
 				<div class="col-lg-6">
 					<ul class="top-bar-info list-inline-item pl-0 mb-0">
-						<li class="list-inline-item"><a href="mailto:support@gmail.com"><i class="icofont-support-faq mr-2"></i>support@novena.com</a></li>
-						<li class="list-inline-item"><i class="icofont-location-pin mr-2"></i>Address Ta-134/A, New York, USA </li>
+						<li class="list-inline-item"><a href="mailto:abclaboratories@email.com"><i class="icofont-support-faq mr-2"></i>abclaboratories@email.com</a></li>
+						<li class="list-inline-item"><i class="icofont-location-pin mr-2"></i>Address Kururnegala, Sri Lanka </li>
 					</ul>
 				</div>
 				<div class="col-lg-6">
@@ -92,9 +92,8 @@ String userRole = (String) session.getAttribute("user-role");
     </div>
   </div>
 </section>
-<!-- contact form start -->
 
-<section class="section contact-info pb-0">
+<section class="section contact-info">
     <div class="container">
          <div class="row">
             <div class="col-lg-4 col-sm-6 col-md-6">
@@ -122,67 +121,6 @@ String userRole = (String) session.getAttribute("user-role");
     </div>
 </section>
 
-<section class="contact-form-wrap section">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-6">
-                <div class="section-title text-center">
-                    <h2 class="text-md mb-2">Contact us</h2>
-                    <div class="divider mx-auto my-4"></div>
-                    <p class="mb-5">Feel free to reach out to us for any inquiries or assistance.</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-9 col-md-9 col-sm-12 mx-auto">
-                <form id="contact-form" class="contact__form " method="post" action="">
-                 <!-- form message -->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="alert alert-success contact__msg" style="display: none" role="alert">
-                                Your message was sent successfully.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <input name="name" id="name" type="text" class="form-control" placeholder="Your Full Name" >
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <input name="email" id="email" type="email" class="form-control" placeholder="Your Email Address">
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <input name="phone" id="phone" type="text" class="form-control" placeholder="Your Phone Number">
-                            </div>
-                        </div>
-                         <div class="col-lg-6">
-                            <div class="form-group">
-                                <input name="subject" id="subject" type="text" class="form-control" placeholder="Your Query Topic">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group-2 mb-4">
-                        <textarea name="message" id="message" class="form-control" rows="8" placeholder="Your Message"></textarea>
-                    </div>
-
-                    <div class="text-center">
-                        <input class="btn btn-main btn-round-full" name="submit" type="submit" value="Send Messege"></input>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- footer Start -->
 <footer class="footer section">
 	<div class="container">
 		<div class="row">

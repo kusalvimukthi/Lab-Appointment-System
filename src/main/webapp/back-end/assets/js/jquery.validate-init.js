@@ -80,7 +80,8 @@ jQuery("#formAuthentication").validate({
             email: !0
         },
         "password": {
-            required: !0
+            required: !0,
+            minlength: 8
         }
 
     },
@@ -115,16 +116,19 @@ jQuery("#register-form").validate({
 
     rules: {
 
-        "first_name": {
+        "f_name": {
             required: true
         },
-        "last_name": {
+        "l_name": {
             required: true
         },
         "nic": {
             required: true
         },
-        "tel_number": {
+        "telephone": {
+            required: true
+        },
+        "dob": {
             required: true
         },
         "email": {
@@ -135,7 +139,7 @@ jQuery("#register-form").validate({
             required: true,
             minlength: 8
         },
-        "re_pass": {
+        "confPassword": {
             required: true,
             equalTo: "#pass"
         },
@@ -145,17 +149,20 @@ jQuery("#register-form").validate({
     },
     messages: {
 
-        "first_name": {
+        "f_name": {
             required: "Please enter your first name"
         },
-        "last_name": {
+        "l_name": {
             required: "Please enter your last name"
         },
         "nic": {
             required: "Please enter your NIC"
         },
-        "tel_number": {
+        "telephone": {
             required: "Please enter your telephone number"
+        },
+        "dob": {
+            required: "Please enter your Date of Birth"
         },
         "email": {
             required: "Please enter your email",

@@ -427,9 +427,9 @@
         width: 130,
         type: 'donut'
       },
-      labels: ['Appointments', 'Completed', 'Pending', 'canceled'],
+      labels: ['Appointments', 'Completed', 'Processing', 'Booked'],
       series: [85, 68, 15, 10],
-      colors: [config.colors.primary, config.colors.success, config.colors.info, config.colors.danger],
+      colors: [config.colors.primary, config.colors.success, config.colors.info, config.colors.dark],
       stroke: {
         width: 5,
         colors: cardColor

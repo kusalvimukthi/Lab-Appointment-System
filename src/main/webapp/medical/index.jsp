@@ -13,10 +13,6 @@
     String userRole = (String) session.getAttribute("user-role");
     if (userFirstName == null || userEmail == null) {
         response.sendRedirect("../login.jsp");
-    } else {
-        if (!"supervisor".equals(userRole)) {
-            response.sendRedirect("../dashbord.jsp");
-        }
     }
     List<MedicalTest> medicalTestList = MedicalController.getAllMedicalTest();
     %>
@@ -94,6 +90,10 @@
                 <div data-i18n="Boxicons">Users</div>
               </a>
             </li>
+            <%
+            }
+            if ("supervisor".equals(userRole)) {
+            %>
             <li class="menu-item">
               <a href="../technologist/index.jsp" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-crown"></i>

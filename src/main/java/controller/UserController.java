@@ -134,11 +134,17 @@ public class UserController {
 						message.setFrom(new InternetAddress(EMAIL));
 						message.addRecipient(Message.RecipientType.TO, new InternetAddress(emailAddress));
 						message.setSubject("Password Reset OTP");
-						String htmlContent = "<html><body>" + "<h3>Hello,</h3>"
-								+ "<p>We received a request to reset your password for your ABC Laboratories web system account. "
-								+ "Please use the following OTP to complete the password reset process.</p>"
-								+ "<p>Your OTP : <strong>" + token + "</strong></p>" + "<br/><p>Thank you,</p>"
-								+ "<p>The ABC Laboratories Team</p>" + "</body></html>";
+						String htmlContent = "<html><body>" +
+		                        "<div style='padding: 20px; border: 1px solid #ccc; border-radius: 5px;'>" +
+		                            "<h3>Hello,</h3>" +
+		                            "<p>We received a request to reset your password for your ABC Laboratories web system account. " +
+		                            "Please use the following OTP to complete the password reset process.</p>" +
+		                            "<p>Your OTP: <strong>" + token + "</strong></p>" +
+		                            "<hr style='border: 0; border-top: 1px solid #ccc;'>" +
+		                            "<p>Thank you,</p>" +
+		                            "<p>The ABC Laboratories Team</p>" +
+		                        "</div>" +
+		                    "</body></html>";
 						message.setContent(htmlContent, "text/html");
 						Transport.send(message);
 						System.out.println("message sent successfully");
