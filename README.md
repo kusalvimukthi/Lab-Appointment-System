@@ -33,11 +33,11 @@ The Lab Appointment System is a Java web dynamic project designed to efficiently
 
 To run this project locally, follow these steps:
 
-1.Check if Java is installed. If not, install it.
-2.Set up Tomcat server to run this project.
-3.Establish SQL connection; you can use XAMPP for this purpose.
-4. Clone the repository: `git clone https://github.com/kusalvimukthi/Lab-Appointment-System.git`
-5. Run the project
+-  Check if Java is installed. If not, install it.
+-  Set up Tomcat server to run this project.
+-  Establish SQL connection; you can use XAMPP for this purpose.
+-  Clone the repository: `git clone https://github.com/kusalvimukthi/Lab-Appointment-System.git`
+-  Run the project
 
 ## Usage
 
