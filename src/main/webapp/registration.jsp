@@ -223,7 +223,6 @@
         </div>
       </div>
     </div>
->
     <script src="./back-end/assets/vendor/libs/jquery/jquery.js"></script>
     <script src="./back-end/assets/vendor/libs/popper/popper.js"></script>
     <script src="./back-end/assets/vendor/js/bootstrap.js"></script>
